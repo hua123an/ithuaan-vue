@@ -1270,7 +1270,7 @@ const listData = ref([
     </div>
     <div class="card">
       <div class="choseColor">
-        <span id="choseColor">选色网站</span><br>
+        <h2 id="choseColor">选色网站</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.choseColor" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1283,7 +1283,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="commonTools">
-        <span id="commonTools">常用工具</span><br>
+        <h2 id="commonTools">常用工具</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.commonTools" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1296,7 +1296,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="compileTools">
-        <span id="compileTools">编译工具</span><br>
+        <h2 id="compileTools">编译工具</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.compileTools" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1309,7 +1309,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="technologyLearning">
-        <span id="technologyLearning">技术学习</span><br>
+        <h2 id="technologyLearning">技术学习</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.technologyLearning" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1322,7 +1322,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="developSoftware">
-        <span id="developSoftware">开发软件</span><br>
+        <h2 id="developSoftware">开发软件</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.developSoftware" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1335,7 +1335,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="publicIcon">
-        <span id="publicIcon">公共图标库</span><br>
+        <h2 id="publicIcon">公共图标库</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.publicIcon" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1348,7 +1348,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="onlineTools">
-        <span id="onlineTools">在线工具</span><br>
+        <h2 id="onlineTools">在线工具</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.onlineTools" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1361,7 +1361,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="codeManager">
-        <span id="codeManager">代码托管</span><br>
+        <h2 id="codeManager">代码托管</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.codeManager" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
@@ -1374,7 +1374,7 @@ const listData = ref([
         </a-link>
       </div>
       <div class="searchEngine">
-        <span id="searchEngine">搜索引擎</span><br>
+        <h2 id="searchEngine">搜索引擎</h2><br>
         <a-link :href="item.titleLink" v-for="item in dataList.searchEngine" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>

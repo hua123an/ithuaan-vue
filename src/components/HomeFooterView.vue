@@ -3,9 +3,8 @@
 </script>
 
 <template>
-  <footer>
+  <footer style="display: flex">
     <span>版权所有 © ithuaan</span>
-
   </footer>
 
 </template>

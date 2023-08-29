@@ -1,1262 +1,1414 @@
 <script setup>
 import {ref} from "vue"
-// save navigation bar data
-const navList = ref([])
 const dataList = {
-  choseColor :[
-    {
-      "title": "webgradients",
-      "titleLink": "https://webgradients.com/",
-      "img": "https://webgradients.com/img/banners/logo.svg",
-      "description": "WebGradients是一个免费的渐变色彩选择网站，提供了180多种渐变色彩选择，可以直接复制css代码。"
-    },
-    {
-      "title": "realtimecolors",
-      "titleLink": "https://realtimecolors.com/",
-      "img": "https://realtimecolors.com/images/favicon.png",
-      "description": "Realtime Colors是一个实时颜色选择器，可以实时调整颜色，然后复制css代码。"
-    }
-    , {
-      "title": "shapefactory",
-      "titleLink": "https://www.shapefactory.co/",
-      "img": "src/assets/img/shapefactory.png",
-      "description": "ShapeFactory是简单设计工具，提供Logo、Pigment、Gradient、Duotone四种功能。"
-    },
-    {
-      "title": "colorsupplyyy",
-      "titleLink": "https://colorsupplyyy.com/app",
-      "img": "https://colorsupplyyy.com/assets/rainbow_logo-c01f4e1fb0ed89bd7fba476e68bf6f05c50d0db9de6dc9a8395b28f421aa9930.svg",
-      "description": "来自世界各地的大师的配色方案."
-    },
-    {
-      "title": "colorhunt",
-      "titleLink": "https://colorhunt.co/",
-      "img": "https://colorhunt.co/img/color-hunt-logo-tongue.svg",
-      "description": "Color Hunt是一个免费和开源的平台，用于创建、分享和应用颜色调色板。"
-    },
-    {
-      "title": "colormind",
-      "titleLink": "https://colormind.io/",
-      "img": "src/assets/img/colormind.png",
-      "description": "基于AI的调色网站，可以生成配色方案。"
-    },
-    {
-      "title": "khroma",
-      "titleLink": "https://khroma.co/",
-      "img": "https://www.khroma.co/assets/images/igbg2x2.png",
-      "description": "基于AI的调色网站，实现高精度的配色方案。"
-    }, {
-      "title": "colorhexa",
-      "titleLink": "https://www.colorhexa.com/",
-      "img": "https://www.colorhexa.com/static/i/logo.min.svg",
-      "description": "一站式网页设计工具。"
-    }, {
-      "title": "webcolourdata",
-      "titleLink": "https://webcolourdata.com/",
-      "img": "https://img.sedoparking.com/templates/bg/arrows.png",
-      "description": "快速寻找当前网页颜色"
-    }, {
-      "title": "colorlisa",
-      "titleLink": "http://colorlisa.com/",
-      "img": "http://colorlisa.com/icons/apple-touch-icon-76x76.png",
-      "description": "Color Lisa的色板都是来自于名家的作品"
-    }, {
-      "title": "colourco",
-      "titleLink": "https://colourco.de/",
-      "img": "https://toptal.com/designers/colourcode/apple-touch-icon.png",
-      "description": "Colourco.de是一个基于Web的工具，可以帮助您创建、保存和共享调色板。"
-    }
-  ],
-  commonTools : [
-    {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML 压缩/解压工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/47/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/html.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tJS 压缩/解压工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/51/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/js.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tCSS 压缩/解压工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/52/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/css.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tJSON 在线解析 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/53/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/json.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tRGB转16进制工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/55/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/rgb.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线进制转换器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/58/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/binary.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t图片转 BASE64 编码 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/59/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/image2base64.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML/CSS/JS 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/61/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/htmlcssjs.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t随机密码生成器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/686/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/key.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML 编码/解码 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/691/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/1473407898_Coding-Html.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tBase64 编码/解码 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/693/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/45920.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tURL 编码/解码 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/695/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/1473410242_url.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tSQL 格式化/压缩工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/701/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/sql_query-128.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tMD5 加密 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/703/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/md5.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tSHA 加密 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/706/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/olive-data-encryption-128.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tXML、JSON 在线转换 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/708/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/images.jpeg"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线 XML 格式化 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/710/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/iconfinder_application-xml_28904.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tMarkdown 在线编辑器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/712/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/09/markdown-icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML 转 JavaScript 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/846/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/11/1480248614_Html.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tUNIX 时间戳转换 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/852/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/11/history-128.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t正则表达式在线测试 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/854/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/11/regular.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tRGB HSV 转换 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/868/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/12/1481023129_HSV.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tRGB CMYK 转换工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/870/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/12/1481023045_cmyk.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHEX CMYK 转换工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/873/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/12/1481024809_CMYK.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHEX HSV 转换工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/875/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/12/1481025911_Colours_CMYK.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHSV CMYK 转换工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/877/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2016/12/1481026587_Colours_RGB.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线二维码生成器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/3454/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2017/08/if_qrcode_173080.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线 Unicode 编码转换 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/3602/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2017/09/unicode_convert.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tIP 地址查询 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/5445/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2018/11/IPaddress_IP.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML 取色器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/5449/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2018/11/3LkGs.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t汉字转拼音 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/5523/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2018/12/hzp.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t代码在线高亮 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/5536/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2019/02/iconfinder_Technology_Mix_-_Final-11_998692.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t长度单位换算 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/5575/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2019/05/length-unit.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线繁体字转换器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/5579/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2019/05/fan2jian.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线字数统计工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/5580/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2019/05/count-word.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t今日日期 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/5672/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2021/03/iconfinder_calendar_285670.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t取色器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6210/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2021/08/colorpicker11.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t图片取色器/拾色器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6214/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2021/09/color-picker-image.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tCSS 按钮生成器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6222/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2021/10/StandAloneButton.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPNG/JPEG 图片压缩 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6232/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/02/530-compress-jpeg-1.jpeg"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tASCII 表 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6318/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/ascii-logo.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t调色板 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6327/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/html-color-codes.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t图片加水印 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6502/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/sy-logo.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t颜色选择器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6656/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/color-select.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t随机数生成器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6680/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/26-266723_numbers.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线涂鸦画板 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6900/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/1814074_draw_edit_pencile_write_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线计算器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/6904/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/2530794_accounting_calculate_calculation_calculator_general_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tJavaScript 混淆/加密 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/6939/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/4021438_code_lock_protect_security_shield_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tpdf 转图片(jpg,png) \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/7271/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/pdf2image-logo.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t代码生成图片 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/7433/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/code2image.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线 JSON 解析 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/7438/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/4691282_json_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t图片转PDF \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/7574/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/image2pdf.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t正则表达式可视化工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/7625/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/regex-image-logo.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tJSON 转义/去除转义 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/7683/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/08/2993435_array_data_file_javascript_json_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tHTML 表格生成器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://tools.haiyong.site/front-end/7688/index.html",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/307999_cell_table_icon.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线汇率换算器 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/7939/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/coins-conveter.png"
-    }, {
-      "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线文本比对工具 \n\t\t\t\t\t\t\t\t\t\t",
-      "titleLink": "https://c.runoob.com/front-end/8006/",
-      "img": "https://tools.haiyong.site/wp-content/uploads/2022/10/9022487_git_diff_duotone_icon.png"
-    }],
-  compileTools : [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPHP 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/1/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/php.png"
+  // the data of aiApplication
+  aiApplication : [{
+    "title": " \n            文心一言        ",
+    "titleLink": "https://yiyan.baidu.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/wxyy.png",
+    "description": " 百度出品的人工智能语言模型"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPython2 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/6/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/python.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPython3 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/9/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/python.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tJava 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/10/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/java.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tC 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/11/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/c.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tC++ 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/12/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/cpp.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tRuby 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/13/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/ruby.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tC# 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/14/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/csharp.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tScala 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/15/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/scala.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tErlang 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/16/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/iconfinder_115_Erlang_logo_logos_4373173.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPerl 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/17/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/perl.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tBash 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/18/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/bash.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tRUST 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/19/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/iconfinder_rust_4691305.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tSwift 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/20/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/swift.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tGo 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/21/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/go.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tNode.js 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/22/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/node.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tLua 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/66/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/lua.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tPascal 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/73/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2016/01/pascal.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tKotlin 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/2960/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2017/06/kotlin.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tTypeScript 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/5577/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2019/05/typescript.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tVB.NET 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/5648/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2020/05/iconfinder_Vb_program_programming_file_extension_3044873.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tR 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/5649/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2020/05/iconfinder_285_R_Project_4518765.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tAssembly 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/6206/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2021/08/general-assembly-logo.png"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\t\t\t\t\t\t\t\t\t\t\t\tGroovy 在线工具 \n\t\t\t\t\t\t\t\t\t\t",
-    "titleLink": "https://c.runoob.com/compile/6208/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2021/08/Groovy.png"
-  }],
-  technologyLearning : [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tStack Overflow",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/14-e1647306997102.png",
-    "titleLink": "https://stackoverflow.com/search",
-    "description": " 大部分编程问题都能在这里找到答案。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t博客园",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/cnblogs-logo.png",
-    "titleLink": "https://www.cnblogs.com/",
-    "description": " 开发者的网上家园"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCSDN",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/csdn-logo.jpeg",
-    "titleLink": "https://www.csdn.net/",
-    "description": " 专业开发者社区"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t开源中国",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/%E5%BC%80%E6%BA%90%E4%B8%AD%E5%9B%BD.jpg",
-    "titleLink": "https://www.oschina.net/",
-    "description": " 中文开源技术交流社区"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSF思否",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/segmentfault.png",
-    "titleLink": "https://segmentfault.com/",
-    "description": " 一个开放的技术社区"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t掘金",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/%E6%8E%98%E9%87%91.png",
-    "titleLink": "https://juejin.cn/",
-    "description": " 代码不止，掘金不停"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t前端开发",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/532707_api_coding_developer_development_man_icon.png",
-    "titleLink": "https://tools.haiyong.site/web-developer/",
-    "description": " 中国领先的IT技术网站"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDEV Community",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/dev-logo.png",
-    "titleLink": "https://dev.to/",
-    "description": " 国外技术分享社区，技术分类比较多，包含 C、 Java、Python 等"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tInfoQ",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/infoq-logo.png",
-    "titleLink": "https://www.infoq.cn/",
-    "description": " 以社区为中心的技术媒体平台，致力于促进软件开发及相关领域知识与创新的传播"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tChinaUnix",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/china-unix.jpg",
-    "titleLink": "http://www.chinaunix.net/",
-    "description": " 专业的Linux/Unix应用与开发者社区，是IT人的网上家园"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t编程测验",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/quiz-icon.png",
-    "titleLink": "https://tools.haiyong.site/quiz/",
-    "description": " 包含各种语言在线测验题"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGo语言中文网",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/golang.jpg",
-    "titleLink": "https://studygolang.com/",
-    "description": " 中国Golang社区，是Go语言爱好者的学习家园"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tV2EX",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/v2ex-logo.png",
-    "titleLink": "http://www.v2ex.com/",
-    "description": " 一个汇集各类奇妙好玩的话题和流行动向的网站，V2EX提供特别有用的小工具『ZEN』,帮助你掌握自己的时间"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCNode",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/cnode.png",
-    "titleLink": "https://cnodejs.org/",
-    "description": " Node.js专业中文社区"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tLinux 公社",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/linuxidc-logo.png",
-    "titleLink": "https://www.linuxidc.com/",
-    "description": " Linux 系统门户网站，实时发布最新 Linux 资讯。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tMSDN",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/msdn-logo.png",
-    "titleLink": "https://docs.microsoft.com/zh-cn/documentation/",
-    "description": " 搜索有关 Microsoft 开发人员工具和技术的深度文章。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tdeveloperWork",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/develper.png",
-    "titleLink": "https://developer.ibm.com/",
-    "description": " IBM的官方开发者项目，在这里你可以访问和下载试用版软件，查找丰富的IT技术资源，和专业的IT从业人员交流"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t力扣",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/leetcode-logo.png",
-    "titleLink": "https://leetcode-cn.com/",
-    "description": " 刷题及面试资源，帮助你高效提升编程技能"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tReddit",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/reddit-logo.png",
-    "titleLink": "https://www.reddit.com/r/programming/",
-    "description": " 和世界各地的程序员探讨和交流技术问题或 IT 热点资讯。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tHacker News",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/hn-logo.png",
-    "titleLink": "https://news.ycombinator.com/",
-    "description": " 计算机黑客和创业公司的社会化新闻网站"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tFreeBuf",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/freebuf-logo.png",
-    "titleLink": "https://www.freebuf.com/",
-    "description": " 国内网络安全行业门户，适合相对资深的极客、黑客人群，以及网站安全类岗位的从业人员。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tW3School",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/w3-logo.png",
-    "titleLink": "https://www.w3school.com.cn/",
-    "description": " 包含了比较全面的中文 Web 技术教程"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t51CTO",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/51otc.jpg",
-    "titleLink": "https://www.51cto.com/",
-    "description": " 中国领先的IT技术网站"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDzone",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/dz-logo-v.svg",
-    "titleLink": "https://dzone.com/",
-    "description": " 技术涵盖比较全面的网站，像云平台、数据库、物联网、开发运维、Java 语言等都有。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t中国大学MOOC",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/mooc-logo.png",
-    "titleLink": "https://www.icourse163.org/",
-    "description": " 精品课程在线学习平台"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDevDocs",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/devdoc-logo.png",
-    "titleLink": "https://devdocs.io/",
-    "description": " 开源免费文档查询工具"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tMDN Web Docs",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/mdn-logo.png",
-    "titleLink": "https://developer.mozilla.org/zh-CN/",
-    "description": " Web 技术，包括 CSS、HTML 和 JavaScript"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tChatGPT",
+    "title": " \n            ChatGPT        ",
+    "titleLink": "http://chat-gpt-next-2xjpm2t58-hua123an.vercel.app",
     "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/openai-avatar.png",
-    "titleLink": "https://chat-gpt-next-2xjpm2t58-hua123an.vercel.app",
     "description": " 一款功能丰富、智能化、易用性强的人工智能工具，适用于各种内容创作者"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tAlgorithms",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/logo_t.svg",
-    "titleLink": "https://the-algorithms.com/",
-    "description": " GitHub 最大的开源算法库"
+    "title": "claude",
+    "titleLink": "https://claudeai.ai/",
+    "img": "https://www.anthropic.com/images/icons/apple-touch-icon.png",
+    "description": "一个比肩gpt4的大型语言模型，目前还在测试阶段，功能丰富，未来会持续更新"
+  },
+    {
+      "title": " \n            通义千问        ",
+      "titleLink": "https://tongyi.aliyun.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/ty.png",
+      "description": " 阿里开发的大语言模型"
+    },
+    {
+      "title": " \n            Notion AI        ",
+      "titleLink": "https://www.notion.so/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2022/11/notion.png",
+      "description": " 这是真人工智能，不是人工智障"
+    }, {
+      "title": " \n            Stable Diffusion WebUI        ",
+      "titleLink": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/stablediffusionweb.png",
+      "description": " Github 源码，可以自己搭建一个 Stable Diffusion 算法的 Web 版"
+    }, {
+      "title": " \n            头像生成卡通        ",
+      "titleLink": "https://toonme.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/favicon-32x32-1.png",
+      "description": " 把头像交给 AI，实现你的卡通梦"
+    }, {
+      "title": " \n            DALL·E 2        ",
+      "titleLink": "https://openai.com/dall-e-2/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/DALL%C2%B7E-2.jpg",
+      "description": " OpenAI旗下DALL·E 2模型，可以从自然语言的description中创造出现实的图像和艺术"
+    }, {
+      "title": " \n            NUWA        ",
+      "titleLink": "https://nuwa-infinity.microsoft.com/#/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/nuwa.png",
+      "description": " 一个多模态生成模型，旨在从给定的文本、图像或视频输入中生成高质量的图像和视频"
+    }, {
+      "title": " \n            Stability AI        ",
+      "titleLink": "https://stability.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/stability.png",
+      "description": " 根据你输入的文字description，生成相应的img"
+    }, {
+      "title": " \n            Novel AI        ",
+      "titleLink": "https://novelai.net/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/novel.png",
+      "description": " 用于人工智能辅助写作、讲故事、虚拟陪伴"
+    }, {
+      "title": " \n            6pen art        ",
+      "titleLink": "https://6pen.art/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/6open-art.png",
+      "description": " 利用文本生成绘画作品的产品"
+    }, {
+      "title": " \n            Deep Dream Generator        ",
+      "titleLink": "https://deepdreamgenerator.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/deep-dream-1.png",
+      "description": " 在文本框内输入文字内容，选择想要的img格式、风格等"
+    }, {
+      "title": " \n            Parti        ",
+      "titleLink": "https://parti.research.google/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/pencil.png",
+      "description": " 一款文本、图像生成工具"
+    }, {
+      "title": " \n            DeepAI        ",
+      "titleLink": "https://deepai.org/machine-learning-model/text2img",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/deep-ai.jpg",
+      "description": " 文本转图像--AI图像生成器API"
+    }, {
+      "title": " \n            fotor        ",
+      "titleLink": "https://www.fotor.com/features/ai-image-generator/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/fotor.png",
+      "description": " AI图像生成器"
+    }, {
+      "title": " \n            Runway        ",
+      "titleLink": "https://runwayml.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/runway.png",
+      "description": " 由人工智能驱动的创意工具"
+    }, {
+      "title": " \n            即时AI        ",
+      "titleLink": "https://js.design/AI-gallery",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/jishi-ai.png",
+      "description": " 将创意一键变成创作"
+    }, {
+      "title": " \n            PicSo        ",
+      "titleLink": "https://picso.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/picso.png",
+      "description": " 是一个文本到图像的人工智能艺术生成器应用和创意数字艺术的在线平台"
+    }, {
+      "title": " \n            Dream AI        ",
+      "titleLink": "https://dream.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/dream-ai.png",
+      "description": " 利用人工智能的力量创造美丽的艺术作品"
+    }, {
+      "title": " \n            LuciaAI        ",
+      "titleLink": "https://luciaai.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/lucia.png",
+      "description": " 是一个先进的人工智能写作助手"
+    }, {
+      "title": " \n            Tome AI        ",
+      "titleLink": "https://beta.tome.app/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/TOME.png",
+      "description": " 由AI驱动的讲故事形式"
+    }, {
+      "title": " \n            beautiful.ai        ",
+      "titleLink": "https://www.beautiful.ai/presentation-maker",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/beautiful.png",
+      "description": " 第一个具有人工智能设计的演示文稿制作器"
+    }, {
+      "title": " \n            DeckRobot        ",
+      "titleLink": "https://www.deckrobot.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/deckrobot.png",
+      "description": " 将毫不费力地设计出数百张幻灯片"
+    }, {
+      "title": " \n            Slidekick        ",
+      "titleLink": "https://www.sitekick.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Slidekick.png",
+      "description": " AI登陆页面构建器"
+    }, {
+      "title": " \n            Presentations.AI        ",
+      "titleLink": "https://presentations.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/presentations.png",
+      "description": " 瞬间获得演讲超能力"
+    }, {
+      "title": " \n            Alpaca        ",
+      "titleLink": "https://www.getalpaca.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Alpaca.png",
+      "description": " 用于图像生成的AI模型"
+    }, {
+      "title": " \n            AI Render        ",
+      "titleLink": "https://airender.gumroad.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/AI-Render.png",
+      "description": " 使用稳定扩散AI创造令人惊奇的图像"
+    }, {
+      "title": " \n            autobackend        ",
+      "titleLink": "https://www.autobackend.dev/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/autobackend.png",
+      "description": " 在几秒钟内创建一个后端"
+    }, {
+      "title": " \n            ABtesting.ai        ",
+      "titleLink": "https://abtesting.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/abtesting.png",
+      "description": " 用AI A/B测试软件提高转化率"
+    }, {
+      "title": " \n            Mutiny        ",
+      "titleLink": "https://www.mutinyhq.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/mutiny-1.png",
+      "description": " 把你的网站变成你的第一收入渠道"
+    }, {
+      "title": " \n            QuickBooks        ",
+      "titleLink": "https://quickbooks.intuit.com/global/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/presentations.png",
+      "description": " 适用于小型企业的智能、简单的在线会计软件"
+    }, {
+      "title": " \n            AdCreative.ai        ",
+      "titleLink": "https://www.adcreative.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/adcreative.jpg",
+      "description": " 生成广告创意，帮助你销售更多"
+    }, {
+      "title": " \n            Adflow        ",
+      "titleLink": "https://www.adflow.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Adflow.jpg",
+      "description": " 为你的广告文案增光添彩"
+    }, {
+      "title": " \n            Anyword        ",
+      "titleLink": "https://anyword.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Anyword.png",
+      "description": " AI文案写作，AI写作助手& 文本生成器"
+    }, {
+      "title": " \n            Osmosis        ",
+      "titleLink": "https://osmosis.studio/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Osmosis.jpg",
+      "description": " 一个基于内容意识的网络协作设计工具，用于生成销售真实产品的人工智能广告"
+    }, {
+      "title": " \n            Pencil        ",
+      "titleLink": "https://www.trypencil.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/pencil.png",
+      "description": " 为电子商务提供无限的广告创意"
+    }, {
+      "title": " \n            LensAI        ",
+      "titleLink": "https://lens-ai.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/lensai.jpg",
+      "description": " 人工智能驱动的上下文计算机视觉广告解决方案"
+    }, {
+      "title": " \n            SuperBuzz        ",
+      "titleLink": "https://www.superbuzz.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/superbuzz.png",
+      "description": " 使用GPT-3技术提高保留流量和利润"
+    }, {
+      "title": " \n            AI21 Labs        ",
+      "titleLink": "https://www.ai21.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/ai21.png",
+      "description": " 通过使机器成为人类的思想伙伴来重新想象我们的阅读和写作方式"
+    }, {
+      "title": " \n            Aleph Alpha        ",
+      "titleLink": "https://www.aleph-alpha.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Aleph-Alpha.png",
+      "description": " 人工智能领导者"
+    }, {
+      "title": " \n            Anthropic        ",
+      "titleLink": "https://www.anthropic.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/anthropic.jpg",
+      "description": " 是一家人工智能安全和研究公司"
+    }, {
+      "title": " \n            Cohere        ",
+      "titleLink": "https://cohere.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/cohere.png",
+      "description": " 开发人员的NLP工具包和语言模型"
+    }, {
+      "title": " \n            DeepMind        ",
+      "titleLink": "https://www.deepmind.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/DeepMind.jpg",
+      "description": " 研究和建立安全的人工智能系统"
+    }, {
+      "title": " \n            Meta AI        ",
+      "titleLink": "https://ai.facebook.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/meta-ai.png",
+      "description": " 专注于生成式人工智能"
+    }, {
+      "title": " \n            Alpa        ",
+      "titleLink": "https://opt.alpa.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/alpa.jpg",
+      "description": " 服务于OPT-175B语言模型"
+    }, {
+      "title": " \n            BLOOM        ",
+      "titleLink": "https://bigscience.notion.site/BLOOM-BigScience-176B-Model-ad073ca07cdf479398d5f95d88e218c4",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/BLOOM.png",
+      "description": " 为你的笔记、任务、维基和数据库提供一体化的工作空间"
+    }, {
+      "title": " \n            Cedille        ",
+      "titleLink": "https://cedille.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Cedille.jpg",
+      "description": " 用于文本生成的NLP平台"
+    }, {
+      "title": " \n            Perplexity        ",
+      "titleLink": "https://www.perplexity.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/1679494099Perplexity.png",
+      "description": " 智能总结并展示信息源"
+    }, {
+      "title": " \n            Hugging Face        ",
+      "titleLink": "https://huggingface.co/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/DistilBERT.png",
+      "description": " 开源数据集和预训练模型"
+    }, {
+      "title": " \n            HyperCLOVA        ",
+      "titleLink": "https://www.navercorp.com/promotion/pressReleasesView/30546",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/HyperCLOVA.png",
+      "description": " 一个类似于GPT-3的韩语模型训练网站"
+    }, {
+      "title": " \n            LaMDA        ",
+      "titleLink": "https://www.blog.google/technology/ai/lamda/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/LaMDA.png",
+      "description": " 突破性的对话技术"
+    }, {
+      "title": " \n            Turing-NLG        ",
+      "titleLink": "https://turing.microsoft.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Turing-NLG.png",
+      "description": " 微软图灵项目"
+    }, {
+      "title": " \n            Megatron NLG        ",
+      "titleLink": "https://developer.nvidia.com/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Megatron-NLG.jpg",
+      "description": " 生成语言模型 "
+    }, {
+      "title": " \n            Muse        ",
+      "titleLink": "https://muse.lighton.ai/home",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/muse.png",
+      "description": " 是一个访问VLM-4的API"
+    }, {
+      "title": " \n            SambaNova Systems        ",
+      "titleLink": "https://sambanova.ai/solutions/gpt/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/SambaNova-Systems.jpg",
+      "description": " SambaNova套件简化了类似于人类的语言"
+    }, {
+      "title": " \n            Wu Dao 1.0        ",
+      "titleLink": "https://syncedreview.com/2021/03/23/chinas-gpt-3-baai-introduces-superscale-intelligence-model-wu-dao-1-0/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Wu-Dao-1.0.jpg",
+      "description": " BAAI推出超大规模智能模型"
+    }, {
+      "title": " \n            youtube        ",
+      "titleLink": "https://www.youtube.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/youtube.jpg",
+      "description": " 用GitHub Copilot设计一个API"
+    }, {
+      "title": " \n            Interior AI        ",
+      "titleLink": "https://interiorai.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Interior-AI.png",
+      "description": " 室内设计理念的灵感，以及使用人工智能的虚拟分期应用程序"
+    }, {
+      "title": " \n            Adobe Podcast        ",
+      "titleLink": "https://podcast.adobe.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Adobe-Podcast.png",
+      "description": " 人工智能音频录制和编辑"
+    }, {
+      "title": " \n            Atomic AI        ",
+      "titleLink": "https://atomic.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Atomic-AI.jpg",
+      "description": " 人工智能驱动的RNA药物发现，具有原子级的精确性"
+    }, {
+      "title": " \n            Character AI        ",
+      "titleLink": "https://beta.character.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Character-AI.jpg",
+      "description": " 是一个神经语言模型的聊天机器人网络应用"
+    }, {
+      "title": " \n            D-ID        ",
+      "titleLink": "https://studio.d-id.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/did.png",
+      "description": " 使用带有文字或音频的静止图像，就能创建专业视频"
+    }, {
+      "title": " \n            Lensa        ",
+      "titleLink": "https://prisma-ai.com/lensa",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Lensa.jpg",
+      "description": " 是一个多合一的图像编辑应用程序"
+    }, {
+      "title": " \n            MegaPortraits        ",
+      "titleLink": "https://samsunglabs.github.io/MegaPortraits/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/MegaPortraits.jpg",
+      "description": " 一次性拍摄百万像素的神经头像"
+    }, {
+      "title": " \n            MyHeritage        ",
+      "titleLink": "https://www.myheritage.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/MyHeritage.png",
+      "description": " 人工智能生成的图像"
+    }, {
+      "title": " \n            Photo AI        ",
+      "titleLink": "https://photoai.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/photoai.jpg",
+      "description": " 第一个人工智能摄影师"
+    }, {
+      "title": " \n            Profile Picture        ",
+      "titleLink": "https://www.profilepicture.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Profile-Picture.jpg",
+      "description": " AI资料img的生成和制作"
+    }, {
+      "title": " \n            Ready Player Me        ",
+      "titleLink": "https://labs.readyplayer.me/avatar",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Ready-Player-Me.jpg",
+      "description": " 一个使用Dall-E的人工智能化身创造者"
+    }, {
+      "title": " \n            Wonder-AI        ",
+      "titleLink": "https://www.wonder-ai.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Wonder-AI.jpg",
+      "description": " 一个生成性人工智能系统，专门生成奇幻生物和环境的图像"
+    }, {
+      "title": " \n            Flowrite        ",
+      "titleLink": "https://www.flowrite.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Flowrite.jpg",
+      "description": " 为你的日常沟通增色"
+    }, {
+      "title": " \n            Blog Idea Generator        ",
+      "titleLink": "https://www.usetopic.com/blog-idea-generator",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Blog-Idea-Generator.png",
+      "description": " 博客创意生成器--即时的内容灵感"
+    }, {
+      "title": " \n            Makelog        ",
+      "titleLink": "https://www.makelog.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/makelog.png",
+      "description": " 将产品更新转化为你最有力的资产"
+    }, {
+      "title": " \n            AI Buddy        ",
+      "titleLink": "https://aibuddy.chat/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/AI-Buddy.png",
+      "description": " 用于WhatsApp的聊天工具"
+    }, {
+      "title": " \n            AskBrian        ",
+      "titleLink": "https://www.askbrian.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/AskBrian.jpg",
+      "description": " 专业人士的人工智能助手"
+    }, {
+      "title": " \n            BLOONY        ",
+      "titleLink": "https://bloony.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/BLOONY.png",
+      "description": " 人工智能聊天伙伴"
+    }, {
+      "title": " \n            Jerome Powell Bot        ",
+      "titleLink": "https://www.institutionalinvestor.com/article/b1tktmhcfdyqsk/An-Interview-With-a-Hyper-Realistic-AI-Powered-Simulation-of-Jerome-Powell",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Jerome-Powell-Bot.jpg",
+      "description": " 采访超现实的、由人工智能驱动的杰罗姆-鲍威尔的模拟人"
+    }, {
+      "title": " \n            Kuki        ",
+      "titleLink": "https://www.kuki.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/kuki.png",
+      "description": " 一个人工智能大脑，旨在为人类提供娱乐服务"
+    }, {
+      "title": " \n            Project December        ",
+      "titleLink": "https://projectdecember.net/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Project-December.jpg",
+      "description": " 使用GPT-3来创建超现实的聊天机器人"
+    }, {
+      "title": " \n            Quickchat        ",
+      "titleLink": "https://www.quickchat.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Quickchat.png",
+      "description": " 建立像人一样说话的人工智能助理的技术"
+    }, {
+      "title": " \n            Emerson        ",
+      "titleLink": "https://www.quickchat.ai/emerson",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Emerson.png",
+      "description": " 是一台可以和你对话的人工智能计算机"
+    }, {
+      "title": " \n            Grammarly        ",
+      "titleLink": "https://www.grammarly.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/grammarly.jpg",
+      "description": " 是一款在线语法纠正和校对工具"
+    }, {
+      "title": " \n            Bing AI 作图        ",
+      "titleLink": "https://cn.bing.com/create",
+      "img": "https://static.runoob.com/images/svg/bing.svg",
+      "description": " 必应图像创作器，输入文字生成img"
+    }, {
+      "title": " \n            Tabnine        ",
+      "titleLink": "https://www.tabnine.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/tabnine.png",
+      "description": " 是一个AI代码助手"
+    }, {
+      "title": " \n            Copilot X        ",
+      "titleLink": "https://github.com/features/preview/copilot-x",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/copilot-x.png",
+      "description": " GitHub 和 OpenAI 合作开发的一个代码自动生成工具"
+    }, {
+      "title": " \n            RemoveBG        ",
+      "titleLink": "https://www.remove.bg/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/remove-bg.jpg",
+      "description": " img去除背景"
+    }, {
+      "title": " \n            Outplay        ",
+      "titleLink": "https://outplayhq.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Outplay.jpg",
+      "description": " AI生成销售话术"
+    }, {
+      "title": " \n            CoWriter        ",
+      "titleLink": "https://cowriter.org/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/cowriter.png",
+      "description": " AI辅助写作"
+    }, {
+      "title": " \n            AI Data Sidekick        ",
+      "titleLink": "https://www.airops.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/ai-data-sidekick-1.jpg",
+      "description": " AI编写SQL代码 "
+    }, {
+      "title": " \n            Fireflies        ",
+      "titleLink": "https://fireflies.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Fireflies.png",
+      "description": " 该工具可插入 Zoom、Teams 或 Webex 等流行的视频会议工具，并自动执行做笔记和创建转录的过程"
+    }, {
+      "title": " \n            dreamlike.art        ",
+      "titleLink": "https://dreamlike.art/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/dreamlike.jpg",
+      "description": " 在几秒钟内创造出令人惊叹的原创艺术"
+    }, {
+      "title": " \n            Phygital+        ",
+      "titleLink": "https://phygital.plus/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/P.jpg",
+      "description": " 让创作者在没有代码的情况下使用神经网络"
+    }, {
+      "title": " \n            ARC Lab        ",
+      "titleLink": "https://arc.tencent.com/zh/ai-demos/faceRestoration",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/arclab1.jpg",
+      "description": " 腾讯ARC实验室推出的AI人像修复小工具"
+    }, {
+      "title": " \n            Papercup        ",
+      "titleLink": "https://www.papercup.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/papercup.png",
+      "description": " 人工智能驱动的配音"
+    }, {
+      "title": " \n            Voice Mode        ",
+      "titleLink": "https://www.voicemod.net/zh/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Voice-Mode.png",
+      "description": " 免费即时变声器"
+    }, {
+      "title": " \n            Soundraw        ",
+      "titleLink": "https://soundraw.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/soundraw.jpg",
+      "description": " 全新的AI音乐平台"
+    }, {
+      "title": " \n            LALAL        ",
+      "titleLink": "https://www.lalal.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/lalal.png",
+      "description": " 提供音乐源分离服务，使用ai技术从任何音频中提取人声，伴奏和多种乐器"
+    }, {
+      "title": " \n            Boomy        ",
+      "titleLink": "https://www.boomy.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/boomy.png",
+      "description": " 在几秒钟内创作出原创歌曲"
+    }, {
+      "title": " \n            Endel        ",
+      "titleLink": "https://endel.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/endel.jpg",
+      "description": " 个性化的声音景观"
+    }, {
+      "title": " \n            MURF        ",
+      "titleLink": "https://murf.ai/%20",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/murf.png",
+      "description": " 将文字输出为语音，可用于视频制作"
+    }, {
+      "title": " \n            Mubert        ",
+      "titleLink": "https://mubert.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/mubert.jpg",
+      "description": " 为内容创作者、品牌和开发者提供的新的免版税音乐生态系统 "
+    }, {
+      "title": " \n            Riffusion        ",
+      "titleLink": "https://www.riffusion.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/riffusion.png",
+      "description": " 一个基于AI生成音乐的项目"
+    }, {
+      "title": " \n            polyAI        ",
+      "titleLink": "https://poly.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/poly.png",
+      "description": " 语音助手，企业智能客服语音服务"
+    }, {
+      "title": " \n            Cascadeur        ",
+      "titleLink": "https://cascadeur.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Cascadeur.jpg",
+      "description": " 最简单的AI辅助关键帧动画制作软件"
+    }, {
+      "title": " \n            MunchAI        ",
+      "titleLink": "https://www.getmunch.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/munch.png",
+      "description": " 自动将长视频转换为数据驱动的短片，用于社交媒体"
+    }, {
+      "title": " \n            Fliki        ",
+      "titleLink": "https://fliki.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/fliki.jpg",
+      "description": " 用AI语音将文字变成视频"
+    }, {
+      "title": " \n            pollinations        ",
+      "titleLink": "https://pollinations.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/pollinations.jpg",
+      "description": " 您的引擎 个性化的媒体"
+    }, {
+      "title": " \n            Autodraw        ",
+      "titleLink": "https://www.autodraw.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/autodraw-1.jpg",
+      "description": " 人工智能画画平台"
+    }, {
+      "title": " \n            通义千问        ",
+      "titleLink": "https://tongyi.aliyun.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/ty.png",
+      "description": " 阿里开发的大语言模型"
+    }, {
+      "title": " \n            Bard        ",
+      "titleLink": "https://bard.google.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/googleBard.png",
+      "description": " Google 推出的 AI 聊天对话机器人 Bard"
+    }, {
+      "title": " \n            Codeium        ",
+      "titleLink": "https://codeium.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/1679564778Codeium.png",
+      "description": " 人工智能编码及检索"
+    }, {
+      "title": " \n            CodiumAI        ",
+      "titleLink": "https://www.codium.ai/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/1679564753CodiumAI.png",
+      "description": " AI 代码测试工具"
+    }, {
+      "title": " \n            Codiga        ",
+      "titleLink": "https://www.codiga.io/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Codiga.png",
+      "description": " AI 代码实时分析"
+    }, {
+      "title": " \n            Hocoos AI 建站        ",
+      "titleLink": "https://hocoos.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/hocoos-logo.jpeg",
+      "description": " AI 建站神器，5 分钟完成建站"
+    }, {
+      "title": " \n            Replicate        ",
+      "titleLink": "https://replicate.com/",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/replicate-logo.png",
+      "description": " 使用云 API 运行开源机器学习模型"
+    }, {
+      "title": "         Codex        ",
+      "titleLink": "https://openai.com/blog/openai-codex",
+      "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/qmruasgh98rw6a4u4yop.webp",
+      "description": " OpenAI 旗下 AI 代码生成训练模型，AI 系统可以将自然语言翻译成代码，"
+    }],
+//   the data of aiProgramming
+  aiProgramming : [{
+    "title": " \n            autobackend        ",
+    "titleLink": "https://www.autobackend.dev/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/autobackend.png",
+    "description": " 在几秒钟内创建一个后端"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t编程书籍",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/285636_book_icon.png",
-    "titleLink": "https://c.runoob.com/books/",
-    "description": " 各类编程书籍推荐"
+    "title": " \n            BerriAI        ",
+    "titleLink": "https://berri.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/berri-ai.png",
+    "description": " 连接您的数据并在几分钟内建立生产就绪的chatGPT应用程序"
+  }, {
+    "title": " \n            AutoRegex        ",
+    "titleLink": "https://www.autoregex.xyz/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/autogerex.jpg",
+    "description": " 使用人工智能更容易创建正则表达式"
+  }, {
+    "title": " \n            Tabnine        ",
+    "titleLink": "https://www.tabnine.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/tabnine.png",
+    "description": " 是一个AI代码助手"
+  }, {
+    "title": " \n            Code Snippets        ",
+    "titleLink": "https://codesnippets.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/codesnippets.png",
+    "description": " GPT-4驱动的VSCode的代码片段"
+  }, {
+    "title": " \n            HeyCLI        ",
+    "titleLink": "https://www.heycli.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/HeyCLI.png",
+    "description": " 将自然语言翻译成终端命令"
+  }, {
+    "title": " \n            Bifrost        ",
+    "titleLink": "https://www.bifrost.so/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Bifrost.png",
+    "description": " 将Figma设计自动转化为干净的React代码"
+  }, {
+    "title": " \n            SpellBox        ",
+    "titleLink": "https://spellbox.app/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/SpellBbx.png",
+    "description": " 人工智能编程助手"
+  }, {
+    "title": " \n            Debuild        ",
+    "titleLink": "https://debuild.app/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Debuild.png",
+    "description": " 快速构建网络应用程序"
+  }, {
+    "title": " \n            AirOps        ",
+    "titleLink": "https://www.airops.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/AirOps.jpg",
+    "description": " 使用强大的配方集编写SQL、文档和更多内容"
+  }, {
+    "title": " \n            AI Query        ",
+    "titleLink": "https://aiquery.co/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/AI-Query.jpg",
+    "description": " 在几秒钟内用人工智能生成SQL查询"
+  }, {
+    "title": " \n            HTTPie AI        ",
+    "titleLink": "https://httpie.io/ai",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/HTTPie-AI.png",
+    "description": " 一种与API互动的新方式"
+  }, {
+    "title": " \n            Ghostwriter        ",
+    "titleLink": "https://replit.com/site/ghostwriter",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Ghostwriter.jpg",
+    "description": " 用人工智能加速编码-replit"
+  }, {
+    "title": " \n            ExplainDev        ",
+    "titleLink": "https://explain.dev/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/ExplainDev.png",
+    "description": " 根据上下文回答你的问题的代码解释器"
+  }, {
+    "title": " \n            Codeball        ",
+    "titleLink": "https://codeball.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/codeball.png",
+    "description": " 人工智能驱动的代码审查"
+  }, {
+    "title": " \n            What The Diff        ",
+    "titleLink": "https://whatthediff.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/What-The-Diff-1.png",
+    "description": " 由人工智能驱动的代码审查助手"
+  }, {
+    "title": " \n            Ask Command        ",
+    "titleLink": "https://askcommand.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/ask-command.png",
+    "description": " 人工智能驱动的开发者助手"
+  }, {
+    "title": " \n            PLZ-CIL        ",
+    "titleLink": "https://github.com/m1guelpf/plz-cli",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/plz-cli.png",
+    "description": " 用自然语言查找终端命令"
+  }, {
+    "title": " \n            Codeium        ",
+    "titleLink": "https://codeium.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/1679564778Codeium.png",
+    "description": " 人工智能编码及检索"
+  }, {
+    "title": " \n            CodiumAI        ",
+    "titleLink": "https://www.codium.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/1679564753CodiumAI.png",
+    "description": " AI 代码测试工具"
+  }, {
+    "title": " \n            Codiga        ",
+    "titleLink": "https://www.codiga.io/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Codiga.png",
+    "description": " AI 代码实时分析"
+  }, {
+    "title": " \n            Warp.AI        ",
+    "titleLink": "https://www.warp.dev/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/warp.png",
+    "description": " 与您的终端完全集成的 AI"
+  }, {
+    "title": " \n            Safurai        ",
+    "titleLink": "https://www.safurai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/safurai-1.png",
+    "description": " 是一个基于人工智能的IDE扩展，旨在帮助开发人员进行编码、调试和重构"
+  }, {
+    "title": " \n            brancher.ai        ",
+    "titleLink": "https://www.brancher.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/brancher.png",
+    "description": " 是一个无代码平台，它可以让你仅用很短的时间通过连接 AI 模型来创建 AI 驱动的应用程序"
+  }, {
+    "title": " \n            GitHub Copilot        ",
+    "titleLink": "https://copilot.github.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/github-copilot.jpg",
+    "description": " 你的人工智能配对程序员"
+  }, {
+    "title": " \n            Akkio        ",
+    "titleLink": "https://www.akkio.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/akkio.png",
+    "description": " 是一个易于使用、可扩展和负担得起的无代码人工智能平台，用于实时决策"
+  }, {
+    "title": " \n            Browse AI        ",
+    "titleLink": "https://www.browse.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/browse.png",
+    "description": " 监控任何网页的变化"
   }],
-  developSoftware : [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t软件下载中心",
-    "titleLink": "https://pc.qq.com/category/c13.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/ruanjianxiazai.jpg",
-    "description": " 腾讯编程软件下载中心推荐2022年最新编程软件高速免费下载，提供多维度编程软件排行榜和编程哪个好等参考信息。全部软件都已经过安全杀毒检测，安全放心。"
+  aiWrite : [{
+    "title": " \n            FlowUs        ",
+    "titleLink": "https://flowus.cn/login",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2022/11/flowus.jpg",
+    "description": " 一款具有特色的、 Notion 类的 All in One 生产力工具"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tVS Code",
-    "titleLink": "https://code.visualstudio.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/vs-code.jpg",
-    "description": " 微软开发且跨平台的免费源代码编辑器，很好用"
+    "title": " \n            Compose AI        ",
+    "titleLink": "https://www.compose.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/Compose.png",
+    "description": " AI写作工具"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tIntelliJ IDEA",
-    "titleLink": "https://www.jetbrains.com/idea/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/intellij.png",
-    "description": " 好用的 Java 编程工具，要付钱"
+    "title": " \n            Jasper        ",
+    "titleLink": "https://www.jasper.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/jaster.png",
+    "description": " 文本生成器，使用 AI 制作出令人惊叹的文案"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tPuTTY",
-    "titleLink": "https://www.putty.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/putty-logo.png",
-    "description": " 远程连接 Linux 工具，开源免费"
+    "title": " \n            Texta        ",
+    "titleLink": "https://texta.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/texta.png",
+    "description": " 为你的博客获得高质量的SEO优化和吸引人的内容"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSublime Text",
-    "titleLink": "https://www.sublimetext.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/sublime-text.jpg",
-    "description": " 跨平台代码编辑器，挺好用"
+    "title": " \n            Writeseed        ",
+    "titleLink": "https://writeseed.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/writeseed.jpg",
+    "description": " 最好的人工智能写作工具"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tsecureCRT&FX",
-    "titleLink": "https://www.vandyke.com/download/index.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/vandyke.jpg",
-    "description": " 超好用的 FTP、SSH 连接工具"
+    "title": " \n            Elephas        ",
+    "titleLink": "https://elephas.app/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Elephas.png",
+    "description": " 适用于Mac的个人AI写作助手"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tNavicat",
-    "titleLink": "https://www.navicat.com.cn/download/navicat-premium",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/navicat.jpg",
-    "description": " 数据库管理工具，用以管理 MySQL、Oracle、PostgreSQL、SQLite、SQL Server、MariaDB 和/或 MongoDB\n\t\t\t\t\t\t\t\t\t\t\t\t等不同类型的数据库。"
+    "title": " \n            Everylead        ",
+    "titleLink": "https://www.everylead.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/everylead.png",
+    "description": " 个性化每条线索"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tPostman",
-    "titleLink": "https://www.postman.com/downloads/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/postman.jpg",
-    "description": " 接口调试与测试工具，提供功能强大的 Web API & HTTP 请求调试。"
+    "title": " \n            Automata        ",
+    "titleLink": "https://byautomata.io/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/automata.png",
+    "description": " 将博客和视频作为LinkedIn的帖子、Twitter的线程和新闻通讯重新使用"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t宝塔",
-    "titleLink": "https://www.bt.cn/new/index.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/bt_logo_new.png",
-    "description": " 简单好用的 Linux/Windows 服务器运维管理面板"
+    "title": " \n            Gramara        ",
+    "titleLink": "https://gramara.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/gramara.jpg",
+    "description": " 立即写出流利的英语"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tEclipse",
-    "titleLink": "https://www.eclipse.org/downloads/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/eclipse.jpg",
-    "description": " 是著名的跨平台的自由集成开发环境（IDE）,Eclipse集成了重构的工具，使得代码的优化变得尤为简单."
+    "title": " \n            Coda AI        ",
+    "titleLink": "https://coda.io/product/ai-alpha",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/coda.png",
+    "description": " 使用Coda AI来拉动背景信息并帮助你添加内容"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tAtom",
-    "titleLink": "https://atom.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/atom.jpg",
-    "description": " Github 专门为程序员推出的一个跨平台文本编辑器。"
+    "title": " \n            Type        ",
+    "titleLink": "https://type.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/type.jpg",
+    "description": " 由人工智能驱动的文件编辑器"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tWebStorm",
-    "titleLink": "https://www.jetbrains.com/webstorm/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/webstorm.jpg",
-    "description": " 适用于 Web、JavaScript 的集成开发环境。"
+    "title": " \n            GoCharlie        ",
+    "titleLink": "https://gocharlie.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/gocharlie.jpg",
+    "description": " 为内容创作者提供的生成性人工智能平台"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tPyCharm",
-    "titleLink": "https://www.jetbrains.com/pycharm/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/pycharm.jpg",
-    "description": " Python IDE，提高 Python 语言开发效率。"
+    "title": " \n            HyperWrite        ",
+    "titleLink": "https://www.hyperwriteai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/HyperWrite.jpg",
+    "description": " 最先进的人工智能写作伴侣"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tAndroid Studio",
-    "titleLink": "https://developer.android.com/studio",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/android.jpg",
-    "description": " 谷歌推出的一个 Android 集成开发工具"
+    "title": " \n            Hoppy Copy        ",
+    "titleLink": "https://www.hoppycopy.co/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Hoppy-Copy.png",
+    "description": " 邮件AI，自动帮你写回复邮件"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDataGrip",
-    "titleLink": "https://www.jetbrains.com/datagrip/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/datagrip.jpg",
-    "description": " JetBrains旗下的一款数据库管理工具"
+    "title": " \n            Writers Brew        ",
+    "titleLink": "https://writersbrew.app/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Writers-Brew.png",
+    "description": " 加速阅读和写作2倍的速度和效果"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDBeaver",
-    "titleLink": "https://dbeaver.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/dbeaver.jpg",
-    "description": " 免费和开源（GPL）为开发人员和数据库管理员通用数据库工具。"
+    "title": " \n            Jenni        ",
+    "titleLink": "https://jenni.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/jenni.png",
+    "description": " 与Jenni AI一起为你的写作增色"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tStudio 3T",
-    "titleLink": "https://studio3t.com/download/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/studio-3t.jpg",
-    "description": " 是一款十分优秀的数据库管理软件,该软件拥有业界顶尖的图形化操作界面,内置了先进的聚合编辑器,能够帮助用户高效率地完成数据库编辑管理."
+    "title": " \n            Easy Peasy        ",
+    "titleLink": "https://easy-peasy.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/easy-peasy.png",
+    "description": " 最佳人工智能作家"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tRedis Desktop Manager",
-    "titleLink": "https://resp.app/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/redis.jpg",
-    "description": " 是目前最好用的Redis可视化管理工具."
+    "title": " \n            Moonbeam        ",
+    "titleLink": "https://www.gomoonbeam.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Moonbeam.png",
+    "description": " 是一个长篇写作的AI助手"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tAnother Redis Desktop Manager",
-    "titleLink": "https://github.com/qishibo/AnotherRedisDesktopManager",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/another.jpg",
-    "description": " 开源免费的 Redis 可视化管理工具"
+    "title": " \n            Rytr        ",
+    "titleLink": "https://rytr.me/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/rytr.png",
+    "description": " 写作助手"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tFiddler",
-    "titleLink": "https://www.telerik.com/download/fiddler",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/fiddle.jpg",
-    "description": " 强大的抓包工具，Web 调试工具，能记录客户端和服务器的 http/https 请求，允许你监视，设置断点，甚至修改输入输出数据。"
+    "title": " \n            Writerly        ",
+    "titleLink": "https://writerly.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Writerly.jpg",
+    "description": " 在几秒钟内产生超相关的、SEO优化的内容。"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tEditPlus",
-    "titleLink": "https://www.editplus.com/download.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/editplus.png",
-    "description": " 一款小巧的但是功能强大的代码编辑器。"
+    "title": " \n            Frase        ",
+    "titleLink": "https://www.frase.io/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/frase.png",
+    "description": " 研究、撰写和优化高质量的SEO内容"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tBeyond Compare",
-    "titleLink": "https://www.scootersoftware.com/download.php",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/beyond.jpg",
-    "description": " 专业且好用的文件对比软件"
+    "title": " \n            Quillbot        ",
+    "titleLink": "https://quillbot.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/quillbot.jpg",
+    "description": " 一个人工智能驱动的转述工具，可以增强你的写作能力"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tFinalShell",
-    "titleLink": "https://www.hostbuf.com/t/988.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/shell-logo.png",
-    "description": " 是一体化的的服务器，网络管理软件，不仅是ssh客户端,还是功能强大的开发，运维工具，充分满足开发，运维需求。"
+    "title": " \n            Sudowrite        ",
+    "titleLink": "https://www.sudowrite.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Sudowrite.jpg",
+    "description": " 神奇的写作AI打破作家的障碍"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSnipPaste",
-    "titleLink": "https://www.snipaste.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/Snipaste.png",
-    "description": " 是一款非常高效的屏幕截图软件。"
+    "title": " \n            Writer        ",
+    "titleLink": "https://writer.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Writer.png",
+    "description": " 使用Writer的人工智能写作平台大规模解锁品牌内容"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tPotPlayer",
-    "titleLink": "https://pc.qq.com/detail/14/detail_15654.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/potplayer.jpg",
-    "description": " 一款非常专业的视频播放器,PotPlayer软件自带专业的编解码器，方便快捷，一同安装后可观看任何格式视频文件，功能非常强大."
+    "title": " \n            Supernormal        ",
+    "titleLink": "https://supernormal.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/supernormal.jpg",
+    "description": " 更快地编写会议笔记"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tChiner",
-    "titleLink": "https://gitee.com/robergroup/chiner",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/gitee.jpg",
-    "description": " 一款丰富数据库生态，独立于具体数据库之外的，数据库关系模型设计平台."
+    "title": " \n            SEO AI        ",
+    "titleLink": "https://seo.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/SEO.png",
+    "description": " 在更短的时间内创建更多高质量的SEO内容，并确保其性能"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tMac 软件下载",
-    "titleLink": "https://www.macwk.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/macwk-logo.png",
-    "description": " 提供很多精品Mac软件下载"
+    "title": " \n            Writesonic        ",
+    "titleLink": "https://writesonic.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/writersonic.jpg",
+    "description": " 创作的最佳AI作家"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tVagrant",
-    "titleLink": "https://www.vagrantup.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/vagrant_logo.png",
-    "description": " 创建和部署虚拟化开发环境"
+    "title": " \n            Copy.AI        ",
+    "titleLink": "https://www.copy.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/copy.png",
+    "description": " 为企业生成高质量的文案"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tVirtualBox",
-    "titleLink": "https://www.virtualbox.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/VirtualBox.png",
-    "description": " 开源虚拟机软件"
+    "title": " \n            Boo.ai        ",
+    "titleLink": "https://boo.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/booai.png",
+    "description": " 是一种新型的文本编辑器，它使用人工智能生成副本并帮助您集思广益"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGitHub Desktop",
-    "titleLink": "https://desktop.github.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/githubdesktop.jpeg",
-    "description": " Github 官方的 Git 界面操作"
+    "title": " \n            Orchard        ",
+    "titleLink": "https://www.orchard.ink/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/orchard.png",
+    "description": " 是一个文本编辑器，可以帮助作家构思、迭代和创新"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tKangaroo",
-    "titleLink": "https://www.datatable.online/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/kangaroo.svg",
-    "description": " 流行数据库的 SQL 客户端和管理工具"
+    "title": " \n            Notion AI        ",
+    "titleLink": "https://www.notion.so/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/notion.png",
+    "description": " 工作更快，写得更好，想得更多"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tHeidiSQL",
-    "titleLink": "https://www.heidisql.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/HeidiSQL-1.jpg",
-    "description": " 是MariaDB、MySQL、Microsoft SQL Server、PostgreSQL和SQLite的免费且功能强大的客户端"
+    "title": " \n            Readwise Reader        ",
+    "titleLink": "https://readwise.io/read?ref=ness_labs",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/readwise.png",
+    "description": " 第一款为实力派读者打造的 \"稍后阅读 \"应用程序"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\ttableplus",
-    "titleLink": "https://tableplus.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/tableplus.png",
-    "description": " 用于数据库管理的现代本地工具"
+    "title": " \n            纯纯写作        ",
+    "titleLink": "https://writer.drakeet.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/chunchun-xiezuo.png",
+    "description": " 绝不丢失文本编辑器"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tsequelpro",
-    "titleLink": "https://sequelpro.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/09/sequel.png",
-    "description": " 是一个快速、易于使用的Mac数据库管理应用程序，用于处理MySQL数据库。"
+    "title": " \n            秘塔写作猫        ",
+    "titleLink": "https://www.xiezuocat.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/mita-xiezuomao.png",
+    "description": " 集AI写作、多人协作、文本校对、改写润色、自动配图等功能为一体"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCursor",
-    "titleLink": "https://www.cursor.so/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/f1a6cd24acefcc687dea963158cdc42e.png",
-    "description": " 使用 GPT-4 编写代码"
+    "title": " \n            Wordtune        ",
+    "titleLink": "https://www.wordtune.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Wordtune.png",
+    "description": " 你的个人写作助理"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCopilot X",
-    "titleLink": "https://github.com/features/preview/copilot-x",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/copilot-x.png",
-    "description": " GitHub 和 OpenAI 合作开发的一个代码自动生成工具"
+    "title": " \n            copysmith        ",
+    "titleLink": "https://copysmith.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/copysmith.jpg",
+    "description": " 为企业和电子商务提供人工智能内容创作"
+  }, {
+    "title": " \n            通义听悟        ",
+    "titleLink": "https://tingwu.aliyun.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/tingwu-logo.png",
+    "description": " 实时记录交流内容，多语言翻译"
   }],
-  publicIcon : [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tStaticfile CDN",
-    "titleLink": "https://www.staticfile.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/staticfile-logo.png",
-    "description": " 提供免费、快速、开放的 CDN 服务，也提供开源库源接入的入口，让所有人都可以提交开源库。"
+  aiDesign : [{
+    "title": " \n            Adobe Firefly        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/adobe-firefly.jpg",
+    "titleLink": "https://firefly.adobe.com/",
+    "description": " 用Firefly做出无限的创作"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tcdnjs",
-    "titleLink": "https://cdnjs.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/csdnjs-logo.png",
-    "description": " 是一个通过快速 CDN 基础设施为开发人员和组织提供流行的前端 Web 开发资源的项目，帮助代码库与框架开发者分发他们的项目。"
+    "title": " \n            Fiction        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/fiction.png",
+    "titleLink": "https://www.fiction.com/",
+    "description": " AI照片和头像生成器"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t微软CDN",
-    "titleLink": "https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/%E5%BE%AE%E8%BD%AFCDN.png",
-    "description": " 微软公司提供的公共CDN服务。"
+    "title": " \n            Uizard        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/uizard.jpg",
+    "titleLink": "https://uizard.io/autodesigner/",
+    "description": " 使用简单的文本来生成应用程序和网站的多屏幕模拟图"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tjsDelivr",
-    "titleLink": "https://www.jsdelivr.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/jsdelivr.jpg",
-    "description": " 免费开源的 CDN 解决方案，用于帮助开发者和站长。包含 JavaScript 库、jQuery 插件、CSS 框架、字体等等 Web 上常用的静态资源。"
+    "title": " \n            Contentinator        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/contentinator.png",
+    "titleLink": "https://contentinator.com/",
+    "description": " 为您的 Figma 设计生成逼真的内容"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tjQuery CDN",
-    "titleLink": "https://releases.jquery.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/jQuery%E4%B9%8B%E5%AE%B6.jpg",
-    "description": " jQuery 官网提供的 CDN 服务"
+    "title": " \n            Galileo AI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Galileo-AI.png",
+    "titleLink": "https://www.usegalileo.ai/",
+    "description": " 界面设计的副手"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t阿里图标库",
-    "titleLink": "https://www.iconfont.cn/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/%E9%98%BF%E9%87%8C%E5%9B%BE%E6%A0%87%E5%BA%93.png",
-    "description": " 国内功能很强大且图标内容很丰富的矢量图标库"
+    "title": " \n            Clickable        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/clickable.png",
+    "titleLink": "https://www.clickable.so/",
+    "description": " 用AI在几秒钟内生成广告"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t矢量 logo下载",
-    "titleLink": "https://worldvectorlogo.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/%E7%9F%A2%E9%87%8Flogo.jpg",
-    "description": " 知名 logo 矢量资源下载"
+    "title": " \n            Flair        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/flair.png",
+    "titleLink": "https://flair.ai/",
+    "description": " 用你自己的品牌对象生成产品照片"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tUNPKG",
-    "titleLink": "https://unpkg.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/unpkg.jpg",
-    "description": " 前端 CDN 库，适用于 npm 上的所有内容。"
+    "title": " \n            Pebblely        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/pebblely.png",
+    "titleLink": "https://pebblely.com/",
+    "description": " 用AI在几秒钟内创建漂亮的产品照片"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tFont Awesome",
-    "titleLink": "https://fontawesome.com/icons",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/fontawesome.jpg",
-    "description": " 一套绝佳的图标字体库和CSS框架"
+    "title": " \n            MakeLogoAI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/makelogo.png",
+    "titleLink": "https://makelogo.ai/",
+    "description": " 独特的标志，100%由人工智能生成"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tIcoMoon",
-    "titleLink": "https://icomoon.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/icomoon.jpg",
-    "description": " 免费的开源字体图标库"
+    "title": " \n            Hothot        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/hotpot.jpg",
+    "titleLink": "https://hotpot.ai/",
+    "description": " 帮助你创建惊人的图形、图片和文本"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tpictonic",
-    "titleLink": "https://pictonic.co/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/pictonic.jpg",
-    "description": " 国外一个有362个免费字体图标库"
+    "title": " \n            Magician        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/magician.png",
+    "titleLink": "https://magician.design/",
+    "description": " 一个由人工智能驱动的Figma的神奇设计工具"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tMFG labs icon set",
-    "titleLink": "http://mfglabs.github.io/mfglabs-iconset/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/MFG.png",
-    "description": " 免费字体图标库"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tLigature Symbols",
-    "titleLink": "https://c.runoob.com/more/LigatureSymbols/site/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/ligature-symbols.png",
-    "description": " 免费字体图标库"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tBootstrap Icons",
-    "titleLink": "https://icons.getbootstrap.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/Bootstrap-Icons.png",
-    "description": " 专门为著名的前端开发 UI 框架 Bootstrap 的组件和文档定制开发的图标库"
+    "title": " \n            爱设计 PPT        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/isheji-ai-ppt.png",
+    "titleLink": "https://ppt.isheji.com/",
+    "description": " AI 快速生成高质量 PPT"
   }],
-  onlineTools :  [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tRegExr",
-    "titleLink": "https://regexr.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/regexrcom-logo.png",
-    "description": " 正则表达式在线测试工具。"
+  aiPainting : [{
+    "title": " \n            PicWish        ",
+    "titleLink": "https://picwish.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/picwish.png",
+    "description": "  一个多功能的图像创意平台"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t在线编译工具",
-    "titleLink": "https://ide.judge0.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/judge-logo.jpg",
-    "description": " 可以在线执行编程语言与 SQL 语句"
+    "title": " \n            Stable Diffusion        ",
+    "titleLink": "https://stability.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/1679494097Stable-Diffusion.png",
+    "description": " AI 绘画，输入关键字生成img"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\trextester",
-    "titleLink": "https://rextester.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/rextester.png",
-    "description": " 在线执行 PHP、Python、C、Java 等各种语言代码。"
+    "title": " \n            Civitai        ",
+    "titleLink": "https://civitai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/civitai-icon-filled-36.png",
+    "description": " 训练好的模型分享网站"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tIdeone",
-    "titleLink": "https://ideone.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/g7o8ow0dockrtsdxym8m.webp",
-    "description": " 在线执行 PHP、Python、C、Java 等各种语言代码。"
+    "title": " \n            文心一格        ",
+    "titleLink": "https://yige.baidu.com/creation",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/ppbaidu.png",
+    "description": " 百度 AI 产品，创意和艺术辅助产品"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGDB online Debugger",
-    "titleLink": "https://www.onlinegdb.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/GDB1.png",
-    "description": " 在线执行 PHP、Python、C、Java 等各种语言代码。"
+    "title": " \n            Nijijourney        ",
+    "titleLink": "https://nijijourney.com/zh/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/niji-journey.png",
+    "description": " 魔法般的二次元绘画生成"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tJSFiddle",
-    "titleLink": "https://jsfiddle.net/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/JSF.jpg",
-    "description": " 前端代码在线执行工具。"
+    "title": " \n            Midjourney        ",
+    "titleLink": "https://www.midjourney.com/home/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/midjourney.png",
+    "description": " 是一款搭载在 Discord 上的人工智能绘画聊天工具"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCodePen",
-    "titleLink": "https://codepen.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/codepen-512.png",
-    "description": " 前端代码在线执行工具。"
+    "title": " \n            NightCafe Creator        ",
+    "titleLink": "https://creator.nightcafe.studio/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/night-cafe-1.png",
+    "description": " AI艺术生成器"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tJSON 解析器",
-    "titleLink": "https://c.runoob.com/front-end/53",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/json.png",
-    "description": " 在线 JSON 工具，可以格式化 JSON 数据。"
+    "title": " \n            fotor        ",
+    "titleLink": "https://www.fotor.com/features/ai-image-generator/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/fotor.png",
+    "description": " AI图像生成器"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tRedis 在线测试",
-    "titleLink": "https://try.redis.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/redis-logo.png",
-    "description": " Redis 命令在线测试工具"
+    "title": " \n            StarryAI        ",
+    "titleLink": "https://starryai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/starry.png",
+    "description": " AI艺术生成器应用程序"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tPaiza",
-    "titleLink": "https://paiza.io/en?locale=en-us",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/paiza.png",
-    "description": " 在线编译工具，包含Python、Java、MySQL 等。"
+    "title": " \n            Hugging Face        ",
+    "titleLink": "https://huggingface.co/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/DistilBERT.png",
+    "description": " 开源数据集和预训练模型"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tLearn Git Branching",
-    "titleLink": "https://learngitbranching.js.org/?locale=zh_CN",
-    "img": "https://static.runoob.com/images/svg/logo-git.svg",
-    "description": " Git 学习命令，可以动画演示命令执行过程"
+    "title": " \n            Adobe Firefly        ",
+    "titleLink": "https://firefly.adobe.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/adobe-firefly.jpg",
+    "description": " 用Firefly做出无限的创作"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tJS Bin",
-    "titleLink": "https://jsbin.com/?html,output",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/js-bin.png",
-    "description": " 前端代码在线执行工具。"
+    "title": " \n            Hothot        ",
+    "titleLink": "https://hotpot.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/hotpot.jpg",
+    "description": " 帮助你创建惊人的图形、img和文本"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t正则可视化工具",
-    "titleLink": "https://c.runoob.com/codedemo/7625/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/regex-image-logo.png",
-    "description": " 将正则表达式转化成可视化图片"
+    "title": " \n            HeadshotPro        ",
+    "titleLink": "https://www.headshotpro.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/headshotpro.png",
+    "description": " 为远程团队提供专业的公司头像"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t代码转图片工具",
-    "titleLink": "https://carbon.now.sh/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/carbon-logo.png",
-    "description": " 代码转为图片，代码美化"
+    "title": " \n            Variart        ",
+    "titleLink": "https://variart.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/variart.jpg",
+    "description": " 输入你想使用的img，即可生成一个没有任何版权限制的类似img"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t算法可视化学习",
-    "titleLink": "https://visualgo.net/zh",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/visualgo-logo.jpeg",
-    "description": " 各种算法可视化，让算法更直观，学起来不那么枯燥。"
+    "title": " \n            Scribble Diffusion        ",
+    "titleLink": "https://scribblediffusion.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/scribble.jpg",
+    "description": " 使用AI将你的草图变成一个精致的图像"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tasciiflow",
-    "titleLink": "https://asciiflow.com/#/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/asciiflow.png",
-    "description": " 一款通过 ASCII 编码来绘制图表的在线工具"
+    "title": " \n            BoothAI        ",
+    "titleLink": "https://www.booth.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/booth.png",
+    "description": " 用AI创建专业品质的产品摄影"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tcodelf",
-    "titleLink": "https://unbug.github.io/codelf/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/codelf.png",
-    "description": " 变量命名神器"
+    "title": " \n            Draw Things        ",
+    "titleLink": "https://drawthings.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/draw-things.png",
+    "description": " AI辅助的图像生成"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tDesmos",
-    "titleLink": "https://www.desmos.com/calculator?lang=zh-CN",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/desmos.jpg",
-    "description": " 免费的在线函数图形计算器"
+    "title": " \n            DiffusionBee        ",
+    "titleLink": "https://diffusionbee.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/DiffusionBee.jpg",
+    "description": " 稳定的扩散应用于AI艺术"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSQL OnLine IDE",
-    "titleLink": "https://sqliteonline.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/07/315102_sql_file_icon.png",
-    "description": " SQL 在线执行测试工具，支持 SQLite、Oracle、MariaDB等各种数据。"
+    "title": " \n            Glazeroom        ",
+    "titleLink": "https://glazeroom.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/glazeroom.png",
+    "description": " 利用AI帮助艺术家更快地提供更好的艺术作品"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tregex101",
-    "titleLink": "https://regex101.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/regex101.png",
-    "description": " 正则表达式在线测试学习工具"
+    "title": " \n            Astria        ",
+    "titleLink": "https://www.astria.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/astria.png",
+    "description": " 量身定制的AI图像生成"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCodex",
-    "titleLink": "https://chat-gpt-next-2xjpm2t58-hua123an.vercel.app/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/openai-avatar.png",
-    "description": " AI 代码生成，通过输入需求生成对应各种语言的代码"
+    "title": " \n            Lexica        ",
+    "titleLink": "https://lexica.art/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/lexica.png",
+    "description": " 稳定扩散的搜索引擎"
+  }, {
+    "title": " \n            Erase BG        ",
+    "titleLink": "https://www.erase.bg/zh/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/erase-bg.png",
+    "description": " 免费去背景软件"
+  }, {
+    "title": " \n            Clipdrop        ",
+    "titleLink": "https://clipdrop.co/tools",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Clipdrop.jpg",
+    "description": " AI 技术处理图像的工具"
+  }, {
+    "title": " \n            Artbreeder        ",
+    "titleLink": "https://www.artbreeder.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Artbreeder.jpg",
+    "description": " 创建令人惊叹的插画和艺术"
+  }, {
+    "title": " \n            dreamlike.art        ",
+    "titleLink": "https://dreamlike.art/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/dreamlike.jpg",
+    "description": " 在几秒钟内创造出令人惊叹的原创艺术"
+  }, {
+    "title": " \n            getimg.ai        ",
+    "titleLink": "https://getimg.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/getimg.png",
+    "description": " 创造出令人惊叹的头像"
+  }, {
+    "title": " \n            stockimg        ",
+    "titleLink": "https://stockimg.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/stockimg.jpg",
+    "description": " 可帮助用户在几分钟内生成徽标、书籍封面、横幅等   "
+  }, {
+    "title": " \n            Profile Pic Maker        ",
+    "titleLink": "https://pfpmaker.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Profile-Pic-Maker.png",
+    "description": " 一个在线的头像制作网站"
+  }, {
+    "title": " \n            Watermark Remover        ",
+    "titleLink": "https://www.watermarkremover.io/zh",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Watermark-Remover.png",
+    "description": " 从图像中删除水印"
+  }, {
+    "title": " \n            ThisPersonDoesNotExist        ",
+    "titleLink": "https://www.thispersondoesnotexist.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/ThisPersonDoesNotExist.jpg",
+    "description": " 生成一张不真实存在的人脸照片"
+  }, {
+    "title": " \n            Playground        ",
+    "titleLink": "https://playgroundai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Playground.png",
+    "description": " AI绘画网站"
+  }, {
+    "title": " \n            Shrink media        ",
+    "titleLink": "https://www.shrink.media/zh",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/shrink.png",
+    "description": " 通过巧妙的压缩和降维来减小图像的文件大小，并免费下载压缩后的图像"
+  }, {
+    "title": " \n            Upscale.media        ",
+    "titleLink": "https://www.upscale.media/zh",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Upscale.png",
+    "description": " 改变img的分辨率"
+  }, {
+    "title": " \n            photosonic        ",
+    "titleLink": "https://photosonic.writesonic.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/photosonic.png",
+    "description": " 用AI创造独特的图像"
+  }, {
+    "title": " \n            Arthub.ai        ",
+    "titleLink": "https://arthub.ai/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/arthub.jpg",
+    "description": " 发现、上传和分享人工智能生成的艺术"
+  }, {
+    "title": " \n            DreamStudio        ",
+    "titleLink": "https://beta.dreamstudio.ai/generate",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/dream-studio.png",
+    "description": "  AI 图像生成器"
+  }, {
+    "title": " \n            无界AI        ",
+    "titleLink": "https://www.wujieai.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/wu-jie.png",
+    "description": " 人人都是艺术家"
+  }, {
+    "title": " \n            Maze Guru        ",
+    "titleLink": "https://maze.guru/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Maze-Guru.jpg",
+    "description": " 一个由 AI 驱动的 AI 绘画生成平台"
+  }, {
+    "title": " \n            Stable Diffusion Online        ",
+    "titleLink": "https://stablediffusionweb.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Stable-Diffusion-Online.jpg",
+    "description": " 能够在任何文本输入的情况下生成照片般逼真的图像"
+  }, {
+    "title": " \n            Craiyon        ",
+    "titleLink": "http://https//www.craiyon.com",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Craiyon.jpg",
+    "description": " 可以根据任意文本生成img的网站"
+  }, {
+    "title": " \n            Magic Eraser        ",
+    "titleLink": "https://www.magiceraser.io/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Magic-Eraser.png",
+    "description": " 一款操作简单的在线P图网站"
+  }, {
+    "title": " \n            This Beach Does Not Exist        ",
+    "titleLink": "https://thisbeachdoesnotexist.com/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/this-beach-does-not.jpg",
+    "description": " 基于人工智能的合成海滩发生器"
+  }, {
+    "title": " \n            Let’s Enhance        ",
+    "titleLink": "https://letsenhance.io/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Lets-Enhance.jpg",
+    "description": " 一款简单易用的在线img无损放大工具"
+  }, {
+    "title": " \n            Generated Photos        ",
+    "titleLink": "https://generated.photos/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Generated-Photos.png",
+    "description": " 是一个专门提供人像照片的网站"
+  }, {
+    "title": " \n            Imagen        ",
+    "titleLink": "https://imagen.research.google/",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Imagen.jpg",
+    "description": " 文本到图像的扩散模型"
   }],
-  codeManager : [{
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGitHub",
-    "titleLink": "https://github.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/github.png",
-    "description": " 是一个面向开源及私有软件项目的托管平台"
+  aiModel : [{
+    "title": " \n            Codex        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/qmruasgh98rw6a4u4yop.webp",
+    "titleLink": "https://openai.com/blog/openai-codex",
+    "description": " OpenAI 旗下 AI 代码生成训练模型，AI 系统可以将自然语言翻译成代码，"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t1024code",
-    "titleLink": "https://1024code.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/07/icon-32x32.png",
-    "description": " 用1024Code, 让编程重回乐趣"
+    "title": " \n            Imagen        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/imagen-1.jpg",
+    "titleLink": "https://imagen.research.google/",
+    "description": " 文本到图像扩散模型"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCoding",
-    "titleLink": "https://coding.net/products/repo",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/coding-1.png",
-    "description": " 一站式软件研发管理平台"
+    "title": " \n            LLaMA        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/llama-1.png",
+    "titleLink": "https://github.com/facebookresearch/llama",
+    "description": " 火焰模型推理代码"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t码云",
-    "titleLink": "https://gitee.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/mayun_logo.png",
-    "description": " 基于 Git 的代码托管和研发协作平台"
+    "title": " \n            Lobe        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/lobe-1.png",
+    "titleLink": "https://www.lobe.ai/",
+    "description": " 一个免费、易于使用的工具来训练机器学习模型"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tBitbucket",
-    "titleLink": "https://bitbucket.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/Bitbucket.jpg",
-    "description": " 为团队提供了一个规划项目、协作编写代码、测试和部署的场所"
+    "title": " \n            Scale        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/scale-2.jpg",
+    "titleLink": "https://scale.com/",
+    "description": " 加快人工智能应用的发展"
   }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGitLab",
-    "titleLink": "https://about.gitlab.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/gitlab.jpg",
-    "description": " 一个DevOps平台，一个方便软件开发的强大完整应用"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tGitshell",
-    "titleLink": "https://gitshell.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/Gitshell.png",
-    "description": " 稳定、快速的Git代码托管服务"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSvn China",
-    "titleLink": "http://www.svnchina.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/svn.png",
-    "description": " 中国源代码托管中心，支持Subversion权限管理、版本管理、修订纪录订阅、SVN库备份导入导出等功能"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t云效代码管理Codeup",
-    "titleLink": "https://codeup.aliyun.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/codeup-logo.png",
-    "description": " 阿里云出品的一款企业级代码管理平台"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t腾讯工蜂",
-    "titleLink": "https://git.code.tencent.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/C05522D8-1582-4522-A41E-410EB8696421.jpeg",
-    "description": " 腾讯家的代码托管服务"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tSourcetree",
-    "titleLink": "https://www.runoob.com/git/source-tree-intro.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/06/4375088_logo_sourcetree_icon.png",
-    "description": " Git 客户端管理工具，适用于 Windows 和 Mac 系统。"
-  }, {
-    "title": "\n\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\tCodeberg",
-    "titleLink": "https://codeberg.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/codeberg-logo.jpeg",
-    "description": " 协作平台和 git 托管"
+    "title": " \n            Evidently AI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/evidently-1.png",
+    "titleLink": "https://www.evidentlyai.com/",
+    "description": " 开源机器学习监控"
   }],
-  searchEngine : [{
-    "title": " \n            Google        ",
-    "titleLink": "https://www.google.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/googe.png",
-    "description": " 最好用，但是要访问需要点技术。"
+  aiAudio :  [{
+    "title": " \n            Runway        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/runway.png",
+    "titleLink": "https://runwayml.com/",
+    "description": " 由人工智能驱动的创意工具"
   }, {
-    "title": " \n            Baidu        ",
-    "titleLink": "https://www.baidu.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/baidu.jpg",
-    "description": " 搜索结果不一定是你想要的，广告也多。"
+    "title": " \n            Synthesia        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/Synthesia.jpg",
+    "titleLink": "https://www.synthesia.io/",
+    "description": " 该平台提供了一个直观的界面，可以简化任何人的视频创作"
   }, {
-    "title": " \n            DuckDuckGo        ",
-    "titleLink": "https://duckduckgo.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/duck.jpg",
-    "description": " 从官网的介绍来看这个搜索引擎不收集用户信息，而且没有广告。"
+    "title": " \n            LyricStudio        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/LyricStudio.png",
+    "titleLink": "https://lyricstudio.net/",
+    "description": " 根据你的主题和风格建议独特的歌词创意"
   }, {
-    "title": " \n            Gitlogs        ",
-    "titleLink": "https://www.gitlogs.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/gitlog-log.png",
-    "description": " Gitlogs 是专门针对 GitHub 项目的搜索引擎，我们通过他可以快速找到想要项目。"
+    "title": " \n            FakeYou        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/FakeYou.png",
+    "titleLink": "https://fakeyou.com/",
+    "description": " 是一个文本到语音的仙境"
   }, {
-    "title": " \n            Stack Overflow        ",
-    "titleLink": "https://stackoverflow.com/search",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/14-e1647306997102.png",
-    "description": " 大部分编程问题都能在这里找到答案。"
+    "title": " \n            Artflow        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Artflow.png",
+    "titleLink": "https://www.app.artflow.ai/",
+    "description": " 使用人工智能生成的资产，创建自己独特的动画故事"
   }, {
-    "title": " \n            Github        ",
-    "titleLink": "https://github.com/search",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220315103508.png",
-    "description": " 最大的开源项目资源网站。"
+    "title": " \n            Crypko        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Crypko.png",
+    "titleLink": "https://crypko.ai/cn/",
+    "description": " 可以自动生成动漫人物，且可为动漫人物添加流畅的动画效果"
   }, {
-    "title": " \n            Iconfinder        ",
-    "titleLink": "https://www.iconfinder.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/iconfinder.png",
-    "description": " 用来查找一些类似 logo 的小图标。"
+    "title": " \n            Nova A.I.        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/nova.png",
+    "titleLink": "https://wearenova.ai/",
+    "description": " 简单的在线视频编辑软件"
   }, {
-    "title": " \n            必应搜索        ",
-    "titleLink": "https://cn.bing.com/",
-    "img": "https://static.runoob.com/images/svg/bing.svg",
-    "description": " 微软公司的搜索引擎"
+    "title": " \n            Make-A-Video        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Make-A-Video.png",
+    "titleLink": "https://makeavideo.studio/",
+    "description": " 根据文字提示生成高质量视频"
   }, {
-    "title": " \n            头条搜索        ",
-    "titleLink": "https://m.toutiao.com/search",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/toutiao.png",
-    "description": " 今日头条的搜索引擎"
+    "title": " \n            Verw        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/verw.png",
+    "titleLink": "https://vrew.voyagerx.com/zh-TW/",
+    "description": " 用AI语音识别自动上字幕"
   }, {
-    "title": " \n            Similarsitesearch        ",
-    "titleLink": "https://www.similarsitesearch.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Similarsitesearch.png",
-    "description": " 寻找类似网站的最佳地点"
+    "title": " \n            Descript        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/descript.png",
+    "titleLink": "https://www.descript.com/",
+    "description": " 一个音视频编辑器"
   }, {
-    "title": " \n            CC Search        ",
-    "titleLink": "https://ccsearch.creativecommons.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/CC.jpg",
-    "description": " CC Search 上搜索到的图片资源都是无版权的，我们可以免费的使用。"
+    "title": " \n            Uberduck        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Uberduck.png",
+    "titleLink": "https://uberduck.ai/",
+    "description": " 开源语音AI社区"
   }, {
-    "title": " \n            Pexels        ",
-    "titleLink": "https://www.pexels.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/pexels.png",
-    "description": " 高质量的图片网站，可以免费使用。"
+    "title": " \n            AIVA        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/AIVA.jpg",
+    "titleLink": "https://www.aiva.ai/",
+    "description": " 人工智能谱写情感原声音乐"
   }, {
-    "title": " \n            Unsplash        ",
-    "titleLink": "https://unsplash.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/unsplash.png",
-    "description": " 免费高清素材网站。"
+    "title": " \n            Supertone        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Supertone.jpg",
+    "titleLink": "https://supertone.ai/",
+    "description": " 使用AI创作音乐、声音和其他声音"
   }, {
-    "title": " \n            知乎搜索        ",
-    "titleLink": "https://zhihu.sogou.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/zhihu.png",
-    "description": " 搜索知乎的内容"
+    "title": " \n            Jukebox        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/jukebox.jpg",
+    "titleLink": "https://openai.com/research/jukebox",
+    "description": " 是OpenAI的一款AI音乐生成器"
   }, {
-    "title": " \n            SimilarWeb        ",
-    "titleLink": "https://www.similarweb.com/zh/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Similarweb.jpg",
-    "description": " 站点流量 — 查看并分析任何网站"
+    "title": " \n            Altered        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Altered.png",
+    "titleLink": "https://www.altered.ai/",
+    "description": " 是一款专业的 AI 变声软件"
   }, {
-    "title": " \n            Goobe        ",
-    "titleLink": "https://goobe.io/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/goobe.png",
-    "description": " 为程序员服务的互联网搜索引擎"
+    "title": " \n            Unscreen        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Unscreen.jpg",
+    "titleLink": "https://www.unscreen.com/",
+    "description": " 移除视频背景"
   }, {
-    "title": " \n            F搜        ",
-    "titleLink": "https://fsoufsou.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/11/F.png",
-    "description": " 是一个搜索引擎，提供了无广告、过滤内容农场的搜索结果，支持翻译、天气、IP 查询等功能"
+    "title": " \n            Topaz video AI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Topaz-video-AI.png",
+    "titleLink": "https://www.topazlabs.com/topaz-video-ai",
+    "description": " 是一款人工智能视频无损放大软件,"
+  }],
+  aiWorking : [{
+    "title": " \n            Tome AI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/TOME.png",
+    "titleLink": "https://beta.tome.app/",
+    "description": " 由AI驱动的讲故事形式"
   }, {
-    "title": " \n            TinEye        ",
-    "titleLink": "https://www.tineye.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/tineye.png",
-    "description": " 用图片来检索图片，我们可以上传图片或输入图片的 URL 来检索。"
+    "title": " \n            tiledesk        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/tiledesk.png",
+    "titleLink": "https://tiledesk.com/chatbot-design-studio/",
+    "description": " 聊天机器人设计工作室"
   }, {
-    "title": " \n            开发者搜索        ",
-    "titleLink": "https://kaifa.baidu.com/",
-    "img": "https://static.runoob.com/images/svg/search-solid.svg",
-    "description": " 针对开发人员的搜索，百度提供"
+    "title": " \n            IngestAI        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/ingestai.jpg",
+    "titleLink": "https://ingestai.io/",
+    "description": " 把你的知识库变成一个类似于ChatGPT的上下文感知机器人"
   }, {
-    "title": " \n            SemanticScholar        ",
+    "title": " \n            Frase        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/frase.png",
+    "titleLink": "https://www.frase.io/",
+    "description": " 研究、撰写和优化高质量的SEO内容"
+  }, {
+    "title": " \n            Mem.ai        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/mem.jpg",
+    "titleLink": "https://mem.ai/",
+    "description": " 让 AI 组织您团队的工作"
+  }, {
+    "title": " \n            Resume Worded        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/resume-worded.png",
+    "titleLink": "https://resumeworded.com/index.php",
+    "description": " 是一个在线简历改进工具"
+  }, {
+    "title": " \n            ChatExcel        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/chatexcel.png",
+    "titleLink": "https://chatexcel.com/",
+    "description": " 仅通过聊天来操控您的Excel表格"
+  }, {
+    "title": " \n            Todoist        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/todoist.png",
+    "titleLink": "https://todoist.com/zh-CN",
+    "description": " 管理您的工作和生活"
+  }, {
+    "title": " \n            ChatBCG        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/chatbcg.png",
+    "titleLink": "https://www.chatbcg.com/",
+    "description": " 一个通过AI生成PPT的工具"
+  }, {
+    "title": " \n            Poised        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Poised.jpg",
+    "titleLink": "https://www.poised.com/",
+    "description": " 是一个 AI 支持的沟通教练，通过观察用户在线上会议中的表现，为用户提供个性化的沟通课程和改进反馈"
+  }, {
+    "title": " \n            TLDR this        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/TLDR-this.png",
+    "titleLink": "https://tldrthis.com/",
+    "description": " 是一个免费的在线文本摘要工具"
+  }, {
+    "title": " \n            Iris.ai        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Iris.png",
+    "titleLink": "https://ted.iris.ai/",
+    "description": " 您的科学助理"
+  }, {
+    "title": " \n            wizdom.ai        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/wizdom.jpg",
+    "titleLink": "https://www.wizdom.ai/",
+    "description": " 是一个自然语言处理平台，帮助人们通过理解和从数据中提取见解来做出更好的决策"
+  }, {
+    "title": " \n            Simpread        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/simpread.png",
+    "titleLink": "https://ksria.com/simpread/",
+    "description": "  如杂志般沉浸式阅读体验的扩展"
+  }, {
+    "title": " \n            Semantic Scholar        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/Semantic-Scholar.png",
     "titleLink": "https://www.semanticscholar.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/seman.jpg",
-    "description": " 一个免费学术搜索引擎，其检索结果来自于期刊、学术会议资料或者"
+    "description": " 人工智能驱动的研究工具"
   }, {
-    "title": " \n            WikiHow        ",
-    "titleLink": "https://zh.wikihow.com/%E9%A6%96%E9%A1%B5",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/WikiHow.png",
-    "description": " 是一个综合技能搜索网站，万事指南网站"
+    "title": " \n            Elicit        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/elicit.png",
+    "titleLink": "https://elicit.org/",
+    "description": " 使用机器学习来帮助您进行研究"
   }, {
-    "title": " \n            知网        ",
-    "titleLink": "https://www.cnki.net/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/zw-logo.png",
-    "description": " 精品论文搜索网站"
-  }, {
-    "title": " \n            Startpage        ",
-    "titleLink": "https://www.startpage.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/startpage-log.webp",
-    "description": " 不收集个人数据的搜索引擎"
-  }, {
-    "title": " \n            Yandex        ",
-    "titleLink": "https://yandex.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/4375136_international_logo_yandex_icon.png",
-    "description": " 俄罗斯的搜索引擎"
-  }, {
-    "title": " \n            LibreStock        ",
-    "titleLink": "https://librestock.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/libre-1.png",
-    "description": " 可以检索一些优质的高清图片。"
-  }, {
-    "title": " \n            The App Store        ",
-    "titleLink": "https://theappstore.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/app-store.png",
-    "description": " 一个针对苹果手机、iPad、Mac 设备的应用搜索工具。"
-  }, {
-    "title": " \n            WolframAlpha        ",
-    "titleLink": "https://www.wolframalpha.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/WolframAlpha.jpg",
-    "description": " 一个更专业的学术搜索网站"
-  }, {
-    "title": " \n            Google 图书搜索        ",
-    "titleLink": "https://books.google.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Google.jpg",
-    "description": " 索引了大部分正规出版的书籍、杂志、报纸等的摘要"
-  }, {
-    "title": " \n            Internet Archive        ",
-    "titleLink": "https://archive.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Internet-Archive.jpg",
-    "description": " 用户能在 Internet Archive 搜索到上百万的免费资源"
-  }, {
-    "title": " \n            Ebooke        ",
-    "titleLink": "https://ebookee.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/03/ebooke.png",
-    "description": " 一个基于互联网并提供免费电子图书下载的搜索引擎网站。"
-  }, {
-    "title": " \n            FindIcons        ",
-    "titleLink": "https://findicons.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/fdicons-logo.png",
-    "description": " 优秀图标素材库"
-  }, {
-    "title": " \n            Wikipedia        ",
-    "titleLink": "https://www.wikipedia.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/100066_wikipedia_icon.png",
-    "description": " 自由的百科全书"
-  }, {
-    "title": " \n            Tunefind        ",
-    "titleLink": "https://www.tunefind.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Tunefind.png",
-    "description": " 方便搜索 BGM"
-  }, {
-    "title": " \n            trace.moe        ",
-    "titleLink": "https://trace.moe/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/trace.moe_.jpg",
-    "description": " 是一款识别率惊人的开源动画搜索引擎"
-  }, {
-    "title": " \n            Qwant        ",
-    "titleLink": "https://www.qwant.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Qwant.png",
-    "description": " 法国的搜索引擎"
-  }, {
-    "title": " \n            Dogpile        ",
-    "titleLink": "https://www.dogpile.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Dogpile.jpg",
-    "description": " 属于元搜索引擎"
-  }, {
-    "title": " \n            Peekier        ",
-    "titleLink": "https://peekier.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/Peekier.png",
-    "description": " 注重用户隐私的搜索引擎之一，搜索速度较快"
-  }, {
-    "title": " \n            ecosia        ",
-    "titleLink": "https://www.ecosia.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/ecosia.png",
-    "description": " 是一款环保的浏览器"
-  }, {
-    "title": " \n            gigablast        ",
-    "titleLink": "https://www.gigablast.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/gigablast.png",
-    "description": " 个人搜索引擎，访问速度较快"
-  }, {
-    "title": " \n            鸠摩搜书        ",
-    "titleLink": "https://www.jiumodiary.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/05/jiumodiary-logo.png",
-    "description": " 可以用来找一些技术文档手册，很多在百度网盘里。"
-  }, {
-    "title": " \n            ProSettings        ",
-    "titleLink": "https://prosettings.net/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/prosettings.png",
-    "description": " 电竞比赛中的最佳设置和设定"
-  }, {
-    "title": " \n            搜狗微信搜索        ",
-    "titleLink": "https://weixin.sogou.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2022/04/9318110f2e5f49c407fe810dc9697766_512_512-1-1.jpg",
-    "description": " 搜狗提供的订阅号及文章内容搜索"
-  }, {
-    "title": " \n            国家安全信息泄露共享平台        ",
-    "titleLink": "https://www.cnvd.org.cn/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/guojiaxinxianquan.png",
-    "description": " 国家计算机网络应急技术处理协调中心联合建立的信息安全漏洞信息共享知识库"
-  }, {
-    "title": " \n            Windy        ",
-    "titleLink": "https://www.windy.com/?29.878,121.549,5,i:pressure",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/windy.png",
-    "description": " 查天气，数据全"
-  }, {
-    "title": " \n            可视化看中国        ",
-    "titleLink": "https://vis.pku.edu.cn/vis4china/#/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/keshihua.png",
-    "description": " 全面了解中国"
-  }, {
-    "title": " \n            The pudding        ",
-    "titleLink": "https://pudding.cool/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/pudding.jpg",
-    "description": " 用视觉文章解释文化中争论的观点"
-  }, {
-    "title": " \n            Stanford Encyclopedia of Philosophy        ",
-    "titleLink": "https://plato.stanford.edu/index.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/stanford.png",
-    "description": " 斯坦福哲学百科全书"
-  }, {
-    "title": " \n            WordHippo        ",
-    "titleLink": "https://www.wordhippo.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/wordhippo.png",
-    "description": " 词库和文字工具"
-  }, {
-    "title": " \n            全历史        ",
-    "titleLink": "https://www.allhistory.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/quanlishi.png",
-    "description": " 可视化历史进程解析"
-  }, {
-    "title": " \n            visualcapitalist        ",
-    "titleLink": "https://www.visualcapitalist.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/visual.png",
-    "description": " 可视化数据网站"
-  }, {
-    "title": " \n            TOP 500        ",
-    "titleLink": "https://www.top500.org/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/TOP500.png",
-    "description": " 世界超级计算机排名网站"
-  }, {
-    "title": " \n            怡口水质地图        ",
-    "titleLink": "https://ecowater.com.cn/service-and-support/eco-water-quality/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/yikou.jpg",
-    "description": " 数据可视化水质地图，很直观"
-  }, {
-    "title": " \n            STARSHIP DIMENSIONS        ",
-    "titleLink": "https://www.merzo.net/indexSD.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/tongxin-baike.jpg",
-    "description": " 是飞行器爱好者或者科幻迷必看网站"
-  }, {
-    "title": " \n            BetaWiki        ",
-    "titleLink": "https://betawiki.net/wiki/Main_Page",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/betawiki.png",
-    "description": " 软件史的开放百科全书"
-  }, {
-    "title": " \n            华为IP知识百科        ",
-    "titleLink": "https://info.support.huawei.com/info-finder/encyclopedia/zh/index.html",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/huawei.png",
-    "description": " 为数据通信领域的热点技术提供简单、易懂的定义和解释"
-  }, {
-    "title": " \n            PDF Drive        ",
-    "titleLink": "https://www.pdfdrive.com/",
-    "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/pdf-drive.png",
-    "description": " 免费搜索和下载PDF文件"
+    "title": " \n            Bardeen        ",
+    "img": "https://tools.haiyong.site/wp-content/uploads/2023/04/bardeen.png",
+    "titleLink": "https://www.bardeen.ai/",
+    "description": " 引入突破性的 AI 来自动化手动工作流程，节省您的时间并激发您的创造力。"
   }]
 }
-// nav list
+// save navigation bar data
 const listData = ref([
-  {'data' : "配色网站" , "href" : "#choseColor"},
-  {'data' : '常用工具' , 'href' : '#commonTools'},
-  {'data' : '编译工具' , 'href' : '#compileTools'},
-  {'data' : '技术学习' ,'href' : '#technologyLearning'},
-  {'data' : '开发软件' ,'href' : '#developSoftware'},
-  {'data' : '公共图标库' ,'href' : '#publicIcon'},
-  {'data' : '在线工具' ,'href' : '#onlineTools'},
-  {'data' : '代码托管' ,'href' : '#codeManager'},
-  {'data' : '搜索引擎' ,'href' : '#searchEngine'},
+  {'data' : "AI应用" , "href" : "aiApplication"},
+  {'data' : 'AI编程' , 'href' : 'aiProgramming'},
+  {'data' : 'AI写作' , 'href' : 'aiWrite'},
+  {'data' : 'AI设计' ,'href' : 'aiDesign'},
+  {'data' : 'AI绘画' ,'href' : 'aiPainting'},
+  {'data' : 'AI模型' ,'href' : 'aiModel'},
+  {'data' : 'AI影音' ,'href' : 'aiAudio'},
+  {'data' : 'AI办公' ,'href' : 'aiWorking'},
 ])
 </script>
 
@@ -1264,14 +1416,15 @@ const listData = ref([
   <div class="main">
     <div class="list" style="margin-bottom: 40px">
       <a-tabs v-for="(i , index) in listData" :key="index" :hoverable="true" style="list-style: none;float: left">
-        <a-list-item style="margin-left: 70px"><a-link :href="i.href">{{i.data}}</a-link></a-list-item>
+        <a-list-item style="margin-left: 70px"><a-link :href="'#' + i.href">{{i.data}}</a-link></a-list-item>
       </a-tabs>
       <br>
     </div>
     <div class="card">
-      <div class="choseColor">
-        <span id="choseColor">选色网站</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.choseColor" target="_blank">
+      <div class="aiApplication">
+        <h2 id="aiApplication">AI应用</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.
+        aiApplication" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1282,9 +1435,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="commonTools">
-        <span id="commonTools">常用工具</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.commonTools" target="_blank">
+      <div class="ai">
+        <h2 id="aiProgramming">AI编程</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiProgramming" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1295,9 +1448,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="compileTools">
-        <span id="compileTools">编译工具</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.compileTools" target="_blank">
+      <div class="aiWrite">
+        <h2 id="aiWrite">AI写作</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiWrite" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1308,9 +1461,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="technologyLearning">
-        <span id="technologyLearning">技术学习</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.technologyLearning" target="_blank">
+      <div class="aiDesign">
+        <h2 id="aiDesign">AI设计</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiDesign" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1321,9 +1474,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="developSoftware">
-        <span id="developSoftware">开发软件</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.developSoftware" target="_blank">
+      <div class="aiPainting">
+        <h2 id="aiPainting">AI绘画</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiPainting" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1334,9 +1487,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="publicIcon">
-        <span id="publicIcon">公共图标库</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.publicIcon" target="_blank">
+      <div class="aiModel">
+        <h2 id="aiModel">AI模型</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiModel" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1347,9 +1500,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="onlineTools">
-        <span id="onlineTools">在线工具</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.onlineTools" target="_blank">
+      <div class="aiAudio">
+        <h2 id="aiAudio">AI影音</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiAudio" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
@@ -1360,22 +1513,9 @@ const listData = ref([
           </a-card>
         </a-link>
       </div>
-      <div class="codeManager">
-        <span id="codeManager">代码托管</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.codeManager" target="_blank">
-          <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
-            <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
-            <a-card-meta :title="item.title">
-              <template #description>
-                {{item.description}}
-              </template>
-            </a-card-meta>
-          </a-card>
-        </a-link>
-      </div>
-      <div class="searchEngine">
-        <span id="searchEngine">搜索引擎</span><br>
-        <a-link :href="item.titleLink" v-for="item in dataList.searchEngine" target="_blank">
+      <div class="aiWorking">
+        <h2 id="aiWorking">AI办公</h2><br>
+        <a-link :href="item.titleLink" v-for="item in dataList.aiWorking" target="_blank">
           <a-card :bordered="true" style="height: 200px;width: 200px;border: 3px ">
             <img :src="item.img" alt="" style="height: 50px;width: 50px"><br>
             <a-card-meta :title="item.title">
